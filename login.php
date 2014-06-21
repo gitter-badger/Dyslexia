@@ -18,10 +18,10 @@ $myusername=addslashes($_POST['loginemail']);
 $mypassword=addslashes($_POST['loginpassword']); 
 
 $sql="SELECT * FROM members WHERE email='$myusername' and password='$mypassword'";
-$result=mysqli_query($con,$sql);
+$result=$con->query($sql);
 
  
-$count=$result->num_rows;
+$count=$result->rowCount();
 
 	if($count==1)
 	{
@@ -30,9 +30,9 @@ $count=$result->num_rows;
 		session_start();
 		$_SESSION['email'] = $myusername;
 	
-		if (($myusername=="admin@mail.com")&&($mypassword=="adminpass")) 
+		if (($myusername=="admin@yahoo.fr")&&($mypassword=="admin123")) 
 		{
-			header("location:http://localhost/Dyslexie/sb-admin/index.php");
+			header("location:http://localhost/Dyslexie_Mohsen%20_NEW/sb-admin/index.php");
 		}else
 		{header("location: quiz.php");}
 	}
@@ -48,5 +48,5 @@ else
 	if (empty($_POST['loginemail'])){echo"<h3>البريد الالكتروني</h3>";}
 	if (empty($_POST['loginpassword'])){echo"<h3>كلمة السر</h3>";}
 }
-mysqli_close($con);
+
 ?>

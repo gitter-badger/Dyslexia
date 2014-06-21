@@ -65,11 +65,16 @@
 					//connexion a la bdd 
 					include('connex_bdd.php');
 					$idq=4;
-					$question = mysqli_query($con,"SELECT * FROM tests");
+					$question = $con->query("SELECT * FROM tests");
+					
+
+
+
 
 					echo '<form name="quizform" method="post" action="quiz.php">';
-					while($row = mysqli_fetch_array($question)) 
+					while($row=$question->fetch()) 
 					{
+
 						echo"<br>".$row['question']; 
 						$model[]=$row['reponse'];
 

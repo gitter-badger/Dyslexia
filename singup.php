@@ -63,25 +63,22 @@ $_SESSION['audition']=$_POST['audition'];
 			 
 
 				$sql="SELECT * FROM members WHERE email='$email'";
-				$result=mysqli_query($con,$sql);
+				$result=$con->query($sql);
  
-				$count=$result->num_rows;
+				$count=$result->rowCount();
 	
 				echo "<h1>$count</h1></br>";
 				if ($count==0)
 				{
 					
 					
-					$q2="INSERT INTO members (email, password, familyname, firstname, sexe, age, broandsis, classbroandsis, view, hearing, date_insc)
-					VALUES ('$email','$password','$nom','$prenom','$sexe',$age,$brotherandsister,$classbrotherandsister,'$vue','$audition',NOW())";
+					$q2=$con->query("INSERT INTO members (email, password, familyname, firstname, sexe, age, broandsis, classbroandsis, view, hearing, date_insc)
+					VALUES ('$email','$password','$nom','$prenom','$sexe',$age,$brotherandsister,$classbrotherandsister,'$vue','$audition',NOW())");
 
-					if (!mysqli_query($con,$q2)) 
-					{
-  					die('Error: ' . mysqli_error($con));
-					}
-					
+				
+
 					echo "<h3>لقد تم تسجيلك بنجاح</h1>";
-					header("location: quiz.php");
+					header("location: index.php");
 
 					mysqli_close($con);
 				}

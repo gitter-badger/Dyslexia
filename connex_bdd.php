@@ -1,20 +1,14 @@
 <?php
 
-
-$con=mysqli_connect("localhost","root","","dyslexia");
-
-
-
-// Check connection
-if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+try
+{
+	$con = new PDO('mysql:host=localhost;dbname=dyslexia', 'root', '');
+	$con->exec("set names utf8");
+}
+catch (Exception $e)
+{
+        die('Erreur : ' . $e->getMessage());
 }
 
-
-$sSQL= 'SET CHARACTER SET utf8'; 
-
-mysqli_query($con,$sSQL) 
-or die ('Can\'t charset in DataBase'); 
-			
 
 ?>
